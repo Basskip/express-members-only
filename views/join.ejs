@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <%- include head %>
+</head>
+
+<body>
+  <% if (currentUser.member) { %>
+  <h1>You're already a member</h1>
+  <% } else { %>
+  <h1>Enter the code-word to become a member</h1>
+  <form action="" method="POST">
+    <div class="form-group">
+      <input type="password" name="password" id="password-field">
+      <small class="form-text">Hint: AzureDiamond</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Join</button>
+  </form>
+  <% } %>
+  <ul>
+    <% if (typeof errors !== 'undefined') { errors.forEach((error) => { %>
+    <li>
+      <%= error.msg %>
+    </li>
+    <% }); } %>
+  </ul>
+  <% include foot %>
+</body>
+
+</html>

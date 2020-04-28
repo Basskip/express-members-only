@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include head %>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% if (typeof currentUser !== 'undefined') { %>
+      <p>Welcome back <%= currentUser.fullname %></p>
+      <p>Member status: <%= currentUser.member %></p>
+      <% if (!currentUser.member) { %>
+        <div>
+          <a href="/join">Join the Club</a>
+        </div>
+      <% } %>
+      <div>
+        <a href="/new-post">Create a new post</a>
+      </div>
+    <% } else { %>
+      <a href="/signup">Sign Up</a>
+    <% } %>
+    <% if (typeof posts !== 'undefined' && posts) { %>
+      <% posts.forEach((post) => { %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <% if (typeof currentUser != 'undefined' && currentUser.member) { %>
+              <h6 class="card-subtitle mb-2 text-muted">Posted by <%= post.author.fullname %></h6>
+            <% } %>
+            <p class="card-text"><%= post.body %></p>
+            <% if(typeof currentUser != 'undefined' && currentUser.admin) { %>
+              <form action=<%= '/post/' + post._id + '/delete' %> method="POST">
+                <button type="submit" class="btn btn-primary">Delete</button>
+              </form>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+    <% include foot %>
+  </body>
+</html>

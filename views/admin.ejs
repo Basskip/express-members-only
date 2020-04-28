@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <%- include head %>
+</head>
+
+<body>
+  <% if (currentUser.admin) { %>
+  <h1>You're already an Admin</h1>
+  <% } else { %>
+  <h1>Enter the code-word to become an Admin</h1>
+  <form action="" method="POST">
+    <div class="form-group">
+      <input type="password" name="password" id="password-field">
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">ASCEND</button>
+  </form>
+  <% } %>
+  <ul>
+    <% if (typeof errors !== 'undefined') { errors.forEach((error) => { %>
+    <li>
+      <%= error.msg %>
+    </li>
+    <% }); } %>
+  </ul>
+  <% include foot %>
+</body>
+
+</html>

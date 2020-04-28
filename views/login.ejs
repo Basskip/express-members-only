@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <%- include head %>
+</head>
+
+<body>
+  <h1>Please log in</h1>
+  <form action="" method="POST">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username-input" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password-input" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Log In</button>
+  </form>
+  <p>Don't have an account? - <a href="/signup">Sign Up</a></p>
+  <ul>
+    <% if (typeof errors !== 'undefined') { errors.forEach((error) => { %>
+      <li>
+        <%= error.msg %>
+      </li>
+    <% }); } %>
+  </ul>
+  <% include foot %>
+</body>
+
+</html>
